@@ -16,9 +16,9 @@ public protocol FircostaDatabase {
     @available(iOS 15.0.0, *)
     func removeValues() async throws -> DatabaseReference
     
-    func observeEvent<C: Codable>(of: DataEventType, onEvent: (_ value: C) -> Void, onError: ((Error) -> Void)?)
+    func observeEvent<C: Codable>(of: DataEventType, onEvent: @escaping(_ value: C) -> Void, onError: ((Error) -> Void)?) -> DatabaseHandle
     
-    func observeSingleEvent<C: Codable>(of: DataEventType, compltion: @escaping(Result<C, Error>) -> Void)
+    func observeSingleEvent<C: Codable>(of: DataEventType, completion: @escaping(Result<C, Error>) -> Void)
     func updateChildValues<C: Codable>(_ values: C, completion: @escaping(Result<DatabaseReference, Error>) -> Void)
     func removeValue(completion: @escaping(_ error: Error?) -> Void)
 }
